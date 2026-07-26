@@ -1,90 +1,64 @@
-# Persona Implementation Chatbot
+# Gen AI Assignments Repository
 
-An AI-powered developer simulation dashboard that replicates conversations with Hitesh Choudhary ("Chai aur Code") and Piyush Garg. The assistant responds in Hinglish (Hindi grammar written in the Latin alphabet, blended with English programming terms) to reflect their unique speech patterns, coding approaches, and personalities.
-
-The application is built as a monorepo containing a **Node/Express** backend utilizing the official `@openrouter/sdk` and a **React (Vite) + Tailwind CSS v4** frontend using **Axios**.
+This repository contains full-stack Generative AI projects built using **Node/Express**, **React (Vite)**, and the **OpenRouter SDK** to implement advanced LLM behaviors.
 
 ---
 
-## Project Structure
+## Projects in this Repository
+
+### 1. [Persona Implementation Chatbot](./Persona%20Implementation)
+An AI-powered developer simulation dashboard that replicates conversations with Hitesh Choudhary ("Chai aur Code") and Piyush Garg. The assistants respond in Hinglish (blending Hindi grammar with English coding terms) to match their unique speech patterns, coding approaches, and teaching personalities.
+*   **Tech Stack**: Node/Express, React, Axios, Tailwind CSS v4, OpenRouter.
+*   **Key Feature**: Highly-customized system prompts replicating specific tech creators.
+
+### 2. [Self-Consistency GPT](./Self%20consistency%20GPT)
+A chat interface implementing the **Self-Consistency (Sample-and-Vote)** architecture. It queries three different LLM models simultaneously (GPT-4o Mini, Claude Sonnet 4, Gemini 2.5 Flash) and routes all outputs to an OpenAI-based consensus judge (GPT-4o) to evaluate, reconcile contradictions, and synthesize a single, hallucination-free final response.
+*   **Tech Stack**: Node/Express, React, Lucide Icons, Custom CSS, OpenRouter.
+*   **Key Feature**: Parallel model dispatching, custom markdown rendering, consensus evaluation tracing.
+
+---
+
+## Global Repository Structure
 
 ```text
 Gen-Ai-Assignment/
-├── Persona Implementation/
-│   ├── backend/
-│   │   ├── config/          # OpenRouter client initialization
-│   │   ├── prompts/         # Hinglish prompt definitions
-│   │   ├── services/        # OpenRouter business logic layer
-│   │   ├── controllers/     # Chat request/response controller
-│   │   ├── routes/          # Express route bindings
-│   │   ├── middlewares/     # Error handlers and validation
-│   │   ├── index.js         # Express main entry point
-│   │   └── package.json     # Backend script runner
-│   └── frontend/
-│       ├── src/
-│       │   ├── components/  # Modular React components
-│       │   ├── App.jsx      # Conversation state engine
-│       │   ├── index.css    # Tailwind v4 import directives
-│       │   └── main.jsx     # Vite React mount file
-│       ├── vite.config.js   # Vite Tailwind compiler configuration
-│       └── package.json     # Frontend dependencies
-├── .gitignore               # Root version control settings
-└── README.md                # This instructions file
+├── Persona Implementation/      # Project 1: Hinglish Creator chatbot
+│   ├── backend/                 # Express backend server
+│   └── frontend/                # React (Vite) + Tailwind CSS UI
+├── Self consistency GPT/        # Project 2: Consensus Synthesis engine
+│   ├── backend/                 # Express backend server
+│   └── frontend/                # React (Vite) + Custom CSS Chat UI
+├── .gitignore                   # Workspace gitignore rules
+└── README.md                    # Main repository overview (this file)
 ```
 
 ---
 
 ## Getting Started
 
-Follow these instructions to configure and run the full-stack application on your local machine.
+Detailed running instructions are included in the individual project folders. Below is a quick overview of how to launch either application:
 
 ### Prerequisites
 Make sure you have [Node.js](https://nodejs.org) (v18+) installed.
 
----
-
-### Step 1: Set Up and Run the Backend
-
-1. Navigate to the `backend` directory:
+### Run Project 1: Persona Chatbot
+1. Configure `Persona Implementation/backend/.env` with your API keys.
+2. In terminal 1 (Backend):
    ```bash
-   cd "Persona Implementation/backend"
+   cd "Persona Implementation/backend" && npm install && npm run dev
    ```
-2. Install the backend dependencies:
+3. In terminal 2 (Frontend):
    ```bash
-   npm install
+   cd "Persona Implementation/frontend" && npm install && npm run dev
    ```
-3. Open the `.env` file and input your OpenRouter API Key:
-   ```env
-   PORT=5000
-   OPENROUTER_API_KEY=your_openrouter_api_key_here
-   ```
-4. Start the backend development server:
+
+### Run Project 2: Self-Consistency GPT
+1. Configure `Self consistency GPT/backend/.env` with your API keys.
+2. In terminal 1 (Backend):
    ```bash
-   npm run dev
+   cd "Self consistency GPT/backend" && npm install && npm start
    ```
-   *The server will start running on `http://localhost:5000`.*
-
----
-
-### Step 2: Set Up and Run the Frontend
-
-1. Open a new terminal window and navigate to the `frontend` directory:
+3. In terminal 2 (Frontend):
    ```bash
-   cd "Persona Implementation/frontend"
+   cd "Self consistency GPT/frontend" && npm install && npm run dev
    ```
-2. Install the frontend dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the Vite React development server:
-   ```bash
-   npm run dev
-   ```
-   *Open the URL output in your terminal (typically `http://localhost:5173`) in your web browser.*
-
----
-
-## Deployment Configuration
-
-*   **Backend Hosting (Render)**: Set up a Web Service pointing to `Persona Implementation/backend` with build command `npm install` and start command `npm start`. Add your `OPENROUTER_API_KEY` to the environment variables.
-*   **Frontend Hosting (Vercel)**: Import the repository, select the `Persona Implementation/frontend` directory, and add the environment variable `VITE_API_BASE_URL` pointing to your deployed backend API URL (e.g. `https://your-backend.onrender.com/api`).
