@@ -16,13 +16,17 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const frontendDistPath = path.join(__dirname, "../frontend/dist");
+let frontendDistPath = path.join(__dirname, "../frontend/dist");
+if (!fs.existsSync(frontendDistPath)) {
+  frontendDistPath = path.join(__dirname, "dist");
+}
 
 if (fs.existsSync(frontendDistPath)) {
   app.use(express.static(frontendDistPath));
   console.log(`Serving static files from React build: ${frontendDistPath}`);
 } else {
-  console.log(`Warning: Frontend build directory not found at: ${frontendDistPath}. Run "npm run build" in the frontend folder to serve static files.`);
+  console.log(`Warning: Frontend build directory not found at: ${frontendDistPath}. Please run build first.`);
+}
 }
 
 // Helper to query an individual OpenRouter model
