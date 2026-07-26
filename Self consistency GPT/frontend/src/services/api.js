@@ -1,4 +1,4 @@
-const API_BASE = window.location.port === "5173" ? "http://localhost:5000" : "";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || (window.location.port === "5173" ? "http://localhost:5000" : "");
 
 export async function fetchConsensus(prompt) {
   const res = await fetch(`${API_BASE}/api/consensus`, {
